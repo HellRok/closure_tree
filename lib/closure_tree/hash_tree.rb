@@ -46,7 +46,7 @@ module ClosureTree
 
         tree_scope.each do |ea|
           h = id_to_hash[ea.id] = ActiveSupport::OrderedHash.new
-          if ea.root? || tree.empty? # We're at the top of the tree.
+          if ea.root? || !id_to_hash[ea._ct_parent_id].present?
             tree[ea] = h
           else
             id_to_hash[ea._ct_parent_id][ea] = h
