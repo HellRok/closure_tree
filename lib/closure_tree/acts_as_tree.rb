@@ -32,5 +32,8 @@ module ClosureTree
       # Support Heroku's database-less assets:precompile pre-deploy step:
       raise e unless ENV['DATABASE_URL'].to_s.include?('//user:pass@127.0.0.1/') && ENV['RAILS_GROUPS'] == 'assets'
     end
+
+    # Stop stepping on other people's toes
+    alias_method :closure_tree, :acts_as_tree
   end
 end
